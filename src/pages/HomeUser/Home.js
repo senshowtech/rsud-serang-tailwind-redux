@@ -12,7 +12,9 @@ export function Home() {
     <div>
       <Nav />
       <Jumbotron />
-      <CallDocter />
+      <div className="p-5">
+        <CallDocter />
+      </div>
     </div>
   );
 }

@@ -17,7 +17,7 @@ export default function Jumbotron() {
         <div className="lg:w-1/2">
           <div className="mt-10 p-3 text-center">
             <h1 className="text-4xl font font-extrabold tracking-tight text-gray-900 sm:text-6xl">
-              RSUD dr dradjat prawiranegara Homecare
+              RSUD dr. Dradjat Prawiranegara Homecare
             </h1>
             <p className="mt-4 text-xl text-gray-500">
               Layanan Homecare, Rumah sakit Umum Banten mempermudah masyarakat
@@ -25,10 +25,10 @@ export default function Jumbotron() {
             </p>
           </div>
         </div>
-        <div>
+        <div className="flex justify-center pl-2 pr-2 lg:pr-0">
           <img
             className="h-auto w-auto"
-            src="https://dev2019.bantenprov.go.id/dinsos_web/uploads/images/image_750x_5e7d64a92298c.jpg"
+            src="https://3.bp.blogspot.com/-IhJMRX7yqds/WriOSQbtZ7I/AAAAAAAAEP0/Vw9uYmMptSs6T_SWIXHdSpYqTdK3CChHQCLcBGAs/s1600/drajat%2Bprawiranegara.jpg"
             alt="Workflow"
           />
         </div>
