@@ -20,7 +20,7 @@ export function Home() {
       <Jumbotron />
       <Medic />
       <div className="p-5">
-        <CallDocter />
+        <CallDocter setOpen={setOpen} />
       </div>
     </div>
   );

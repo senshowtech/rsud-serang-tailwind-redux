@@ -1,6 +1,6 @@
 import { API } from "../../config/axios";
 
-export default function CallDocter() {
+export default function CallDocter({ setOpen }) {
   const HandleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -18,6 +18,7 @@ export default function CallDocter() {
       const response = await API.post("order", data, config);
       if (response.status === 201) {
         console.log("sukses");
+        setOpen(true);
       }
     } catch (error) {
       console.log(error);
