@@ -10,7 +10,7 @@ import Alert from "../../component/HomeUser/Alert";
 export function Home() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
 
   return (

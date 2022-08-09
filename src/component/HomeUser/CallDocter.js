@@ -1,4 +1,28 @@
+import { API } from "../../config/axios";
+
 export default function CallDocter() {
+  const HandleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const data = {
+        firstName: e.target.nama_depan.value,
+        lastName: e.target.nama_belakang.value,
+        number: e.target.nomor_handphone.value,
+        address: e.target.alamat.value,
+      };
+      const response = await API.post("order", data, config);
+      if (response.status === 201) {
+        console.log("sukses");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="h-[420px]">
       <div className="hidden sm:block" aria-hidden="true">
@@ -20,14 +44,14 @@ export default function CallDocter() {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            <form onSubmit={HandleSubmit}>
               <div className="drop-shadow-lg overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-3">
                       <input
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="nama_depan"
+                        name="nama_depan"
                         type="text"
                         placeholder="Nama Depan"
                       />
@@ -36,7 +60,7 @@ export default function CallDocter() {
                     <div className="col-span-6 sm:col-span-3">
                       <input
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="nama_belakang"
+                        name="nama_belakang"
                         type="text"
                         placeholder="Nama Belakang"
                       />
@@ -45,7 +69,7 @@ export default function CallDocter() {
                     <div className="col-span-6 sm:col-span-4">
                       <input
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="nomor_handphone"
+                        name="nomor_handphone"
                         type="number"
                         placeholder="Nomor Handphone"
                       />
@@ -70,7 +94,7 @@ export default function CallDocter() {
                           m-0
                           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                         "
-                        id="exampleFormControlTextarea1"
+                        name="alamat"
                         rows="3"
                         placeholder="Alamat"
                       ></textarea>

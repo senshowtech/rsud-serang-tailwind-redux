@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationIcon } from "@heroicons/react/outline";
 
 export default function Alert({ open, setOpen, cancelButtonRef }) {
   return (
