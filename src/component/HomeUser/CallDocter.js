@@ -1,29 +1,6 @@
-import { API } from "../../config/axios";
+import React from "react";
 
-export default function CallDocter({ setOpen }) {
-  const HandleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-        },
-      };
-      const data = {
-        firstName: e.target.nama_depan.value,
-        lastName: e.target.nama_belakang.value,
-        number: e.target.nomor_handphone.value,
-        address: e.target.alamat.value,
-      };
-      const response = await API.post("order", data, config);
-      if (response.status === 201) {
-        console.log("sukses");
-        setOpen(true);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export default function CallDocter({ setOpen, HandleSubmit }) {
   return (
     <div className="h-[420px]">
       <div className="hidden sm:block" aria-hidden="true">
