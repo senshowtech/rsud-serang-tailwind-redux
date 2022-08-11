@@ -11,34 +11,25 @@ import Alert from "../../component/HomeUser/Alert";
 let socket;
 
 export function Home() {
+  const URL = "ws://127.0.0.1:8000";
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  const [open, setOpen] = useState(false);
-  const [messages, setMessages] = React.useState([]);
   const cancelButtonRef = useRef(null);
+  const [open, setOpen] = useState(false);
+  const [ws, setWs] = useState(new WebSocket(URL));
 
   React.useEffect(() => {
-    socket = io("http://localhost:5000");
-    socket.on("new message", () => {
-      socket.emit("load messages");
-    });
-    loadMessages();
-    socket.on("connect_error", (err) => {
-      console.error(err.message);
-    });
-    return () => {
-      socket.disconnect();
+    ws.onopen = () => {
+      console.log("WebSocket Connected");
     };
-  }, [messages]);
 
-  const loadMessages = () => {
-    socket.on("messages", (data) => {
-      if (data.length > 0) {
-        console.log(data);
-        setMessages(data);
-      }
-    });
-  };
+    return () => {
+      ws.onclose = () => {
+        console.log("WebSocket Disconnected");
+        setWs(new WebSocket(URL));
+      };
+    };
+  }, [ws.onmessage, ws.onopen, ws.onclose]);
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
@@ -54,7 +45,7 @@ export function Home() {
         number: e.target.nomor_handphone.value,
         address: e.target.alamat.value,
       };
-      socket.emit("send messages", data);
+      ws.send(JSON.stringify(data));
     } catch (error) {
       console.log(error);
     }

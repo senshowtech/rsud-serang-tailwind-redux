@@ -2,31 +2,7 @@ import React from "react";
 import { io } from "socket.io-client";
 let socket;
 
-export default function Table() {
-  const [messages, setMessages] = React.useState([]);
-
-  React.useEffect(() => {
-    socket = io("http://localhost:5000");
-    socket.on("new message", () => {
-      socket.emit("load messages");
-    });
-    loadMessages();
-    socket.on("connect_error", (err) => {
-      console.error(err.message);
-    });
-    return () => {
-      socket.disconnect();
-    };
-  }, [messages]);
-
-  const loadMessages = () => {
-    socket.on("messages", (data) => {
-      if (data.length > 0) {
-        console.log(data);
-        setMessages(data);
-      }
-    });
-  };
+export default function Table({ data }) {
   return (
     <div className="mt-2 p-2">
       <div className="overflow-x-auto">
@@ -41,13 +17,17 @@ export default function Table() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-              <td>Blue</td>
-            </tr>
+            {data.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{item.firstName}</td>
+                  <td>{item.lastName}</td>
+                  <td>{item.number}</td>
+                  <td>{item.address}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
