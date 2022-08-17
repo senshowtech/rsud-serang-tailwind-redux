@@ -2,13 +2,11 @@ import React from "react";
 import { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser, selectUser } from "../../app/userSlice";
-import { io } from "socket.io-client";
 import Nav from "../../component/HomeUser/Nav";
 import Jumbotron from "../../component/HomeUser/Jumbotron";
 import CallDocter from "../../component/HomeUser/CallDocter";
 import Medic from "../../component/HomeUser/Medic";
 import Alert from "../../component/HomeUser/Alert";
-let socket;
 
 export function Home() {
   const URL = "ws://127.0.0.1:8000";
